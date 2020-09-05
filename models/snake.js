@@ -10,6 +10,7 @@ const SnakeSchema = new Schema({
         venomous: { type: Boolean, required: true},
         morph: { type: String, required: true},
         sex: { type: String, values: Sex, required: true},
+        age: { type: String, required: true},
         prooven: { type: Boolean, required: true},
         origin: { type: String, required: true},
         quote: { type: String, required: true},
