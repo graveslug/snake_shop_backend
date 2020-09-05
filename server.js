@@ -34,9 +34,6 @@ const snakeController = require('./controllers/snakes')
 //sets up snake as the snakeController
 app.use('/snakes', snakeController)
 
-//calls users in controller
-const userController = require('./controllers/users.js')
-app.use('/users', userController)
 
 
 //LISTENER
