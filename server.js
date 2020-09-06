@@ -3,6 +3,9 @@ const express = require('express')
 const app = express()
 const mongoose = require("mongoose")
 const morgan = require('morgan')
+const bodyParser = require("body-parser");
+const passport = require("passport");
+require("./config/passport")(passport);
 
 
 const PORT = process.env.PORT || 3001 //<----LOOK HERE ITS DIFFERENT FROM FRONTEND
@@ -28,15 +31,30 @@ db.on('open', ()=>{})
 app.use(express.json())
 app.use(morgan('dev'))
 
+// Bodyparser middleware
+app.use(
+    bodyParser.urlencoded({
+      extended: false
+    })
+  );
+  app.use(bodyParser.json());
+
+  // Passport middleware
+app.use(passport.initialize());
+
+
+
+
+  
+
 //CONTROLLAAAAAAA
 //calls snake in controller
 const snakeController = require('./controllers/snakes')
 //sets up snake as the snakeController
 app.use('/snakes', snakeController)
+const users = require("./controllers/users");
+app.use("/user", users);
 
-//calls users in controller
-const userController = require('./controllers/users.js')
-app.use('/users', userController)
 
 
 //LISTENER

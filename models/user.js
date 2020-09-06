@@ -1,18 +1,18 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema
 
-const UserSchema = newSchema (
+
+const userSchema = new mongoose.Schema (
     {
         name: {
-            type: string,
+            type: String,
             required: true
         },
         email: {
-            type: string,
+            type: String,
             required: true
         },
         password: {
-            type: string,
+            type: String,
             required: true
         },
         // //figure out how to make it default of false and not be touchable from client side. Most likely be able to change it in database? Not sure as of yet.
