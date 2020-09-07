@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const bodyParser = require("body-parser");
 const passport = require("passport");
 require("./config/passport")(passport);
+const cors = require('cors')
 
 
 const PORT = process.env.PORT || 3001 //<----LOOK HERE ITS DIFFERENT FROM FRONTEND
@@ -28,6 +29,7 @@ db.on('disconnected', ()=> console.log('Your mongod has been disconnected. Peace
 db.on('open', ()=>{})
 
 //MIDDLEWARE
+app.use(cors())
 app.use(express.json())
 app.use(morgan('dev'))
 
@@ -45,7 +47,7 @@ app.use(passport.initialize());
 
 
 
-  
+
 
 //CONTROLLAAAAAAA
 //calls snake in controller
