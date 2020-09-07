@@ -11,10 +11,12 @@ const SnakeSchema = new Schema({
         morph: { type: String, required: true},
         sex: { type: String, values: Sex, required: true},
         age: { type: String, required: true},
-        prooven: { type: Boolean, required: true},
+        proven: { type: Boolean, required: true},
         origin: { type: String, required: true},
         quote: { type: String, required: true},
-        description: { type: String, required: true}
+        description: { type: String, required: true},
+        price: { type: String, required: true },
+        updatedOn: {type: String, required: true}
     })
 
 const SnakeInfo = mongoose.model('SnakeInfo', SnakeSchema)
