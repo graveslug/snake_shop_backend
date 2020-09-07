@@ -1,3 +1,4 @@
+
 require("dotenv").config();
 const express = require("express");
 const app = express();
@@ -9,6 +10,7 @@ const passport = require("./config/passport")();
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const db = mongoose.connection;
+
 
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
@@ -22,8 +24,6 @@ db.on("open", () => {
 app.use(cors())
 app.use(express.json())
 app.use(passport.initialize());
-
-
 
 //CONTROLLAAAAAAA
 //calls snake in controller
