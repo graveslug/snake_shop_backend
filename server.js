@@ -1,38 +1,38 @@
-require("dotenv").config()
-const express = require('express')
-const app = express()
-const mongoose = require("mongoose")
-const morgan = require('morgan')
 
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const PORT = process.env.PORT || 3001;
+const mongoose = require("mongoose");
+const path = require("path");
+const cors = require("cors");
+const passport = require("./config/passport")();
 
-const PORT = process.env.PORT || 3001 //<----LOOK HERE ITS DIFFERENT FROM FRONTEND
+const MONGODB_URI = process.env.MONGODB_URI;
+const db = mongoose.connection;
 
-//MongoDB
-const MONGODB_URI = process.env.MONGODB_URI
-const db = mongoose.connection
 
 mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-
-//checks error && success
-db.on('error', (error) => console.log(error.message + 'Yo mongod isn\'t connected!'))
-db.on('connected', ()=> console.log('Yaaaaas mongod has connected'))
-db.on('disconnected', ()=> console.log('Your mongod has been disconnected. Peace out girl-scout'))
-
-//opens connection to mongod
-db.on('open', ()=>{})
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+db.on("open", () => {
+  console.log("Mongo is Connected");
+});
 
 //MIDDLEWARE
+app.use(cors())
 app.use(express.json())
-app.use(morgan('dev'))
+app.use(passport.initialize());
 
 //CONTROLLAAAAAAA
 //calls snake in controller
 const snakeController = require('./controllers/snakes')
 //sets up snake as the snakeController
 app.use('/snakes', snakeController)
+
+const users = require("./controllers/users");
+app.use("/users", users);
 
 
 
