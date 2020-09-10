@@ -11,6 +11,7 @@ const passport = require("./config/passport")();
 const MONGODB_URI = process.env.MONGODB_URI;
 const db = mongoose.connection;
 
+console.log(MONGODB_URI)
 
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,

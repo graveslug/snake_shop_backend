@@ -40,10 +40,10 @@ router.post("/", (req, res) => {
     } else {
         req.body.venomous = false;
     }
-    if (req.body.prooven === 'on') {
-        req.body.prooven = true;
+    if (req.body.proven === 'on') {
+        req.body.proven = true;
     } else {
-        req.body.prooven = false;
+        req.body.proven = false;
     }
   // Use Model to create Snake Document
   Snake.create(req.body, (error, createdSnake) => {
