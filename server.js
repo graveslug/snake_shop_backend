@@ -34,7 +34,9 @@ app.use('/snakes', snakeController)
 const users = require("./controllers/users");
 app.use("/users", users);
 
-
+app.get('/', () =>{
+    res.redirect('/snakes')
+})
 
 //LISTENER
 app.listen(PORT, () => {
